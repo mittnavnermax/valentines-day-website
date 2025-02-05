@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: red;
+        }
+        .letter {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        #yes, #no {
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #yes {
+            background-color: red;
+            color: white;
+        }
+        #no {
+            background-color: white;
+            color: red;
+            border: 2px solid red;
+        }
+        #yes:hover, #no:hover {
+            transform: scale(1.1);
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(238, 175, 253, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Photo Container */
+        .photo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        /* Image Styling */
+        .photo {
+            width: 120px; /* Smaller size for mobile view */
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        /* Heart emoji styling */
+        .heart-emoji {
+            position: relative;
+            top: -115px;
+            right: -50px;
+            font-size: 20px;
+        }
+
+        /* Make sure images resize nicely on small screens */
+        @media (max-width: 600px) {
+            .photo {
+                width: 100px; /* Even smaller for smaller screens */
+                height: 100px;
+            }
+
+            .heart-emoji {
+                font-size: 16px;
+            }
+        }
+
+        /* Text for "точно?)))" */
+        .no-image-text {
+            display: none;
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+            margin-top: -165px;
+        }
+
+        .no-image-container {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Прівєт моя красоточка люпімая ❤️</h1>
+    <div class="letter">
+        <p>Дорогая Лізочка</p>
+        <p>Хочу задать тєбє важній вопросік...</p>
+        <p>Ті будешь моей валєнтінкой??? 💖</p>
+    </div>
+    <div class="buttons">
+        <button id="yes" onclick="showPopup()">Да</button>
+        <button id="no" onclick="showImageAndGrowYes()">Нєт</button>
+    </div>
+    
+    <!-- Photo Gallery with Random Placement Under Buttons -->
+    <div class="photo-container">
+        <div class="photo-wrapper">
+            <img id="photo1" class="photo" src="./photo_2024-10-14_21-00-09.jpg" alt="Photo 1">
+            <div class="heart-emoji">❤️</div>
+        </div>
+        <div class="photo-wrapper">
+            <img id="photo2" class="photo" src="./photo_2024-11-21_14-29-26.jpg" alt="Photo 2">
+            <div class="heart-emoji">❤️</div>
+        </div>
+        <div class="photo-wrapper">
+            <img id="photo3" class="photo" src="./photo_2024-12-27_23-50-05.jpg" alt="Photo 3">
+            <div class="heart-emoji">❤️</div>
+        </div>
+        <div class="photo-wrapper">
+            <img id="photo3" class="photo" src="./photo_2023-10-20_09-20-50.jpg" alt="Photo 3">
+            <div class="heart-emoji">❤️</div>
+        </div>
+        <div class="photo-wrapper">
+            <img id="photo3" class="photo" src="./photo_2024-02-21_23-47-38.jpg" alt="Photo 3">
+            <div class="heart-emoji">❤️</div>
+        </div>
+        <div class="photo-wrapper">
+            <img id="photo3" class="photo" src="./photo_2024-03-18_13-13-10.jpg" alt="Photo 3">
+            <div class="heart-emoji">❤️</div>
+        </div>
+    </div>
+
+    <!-- Hidden Sad Image and Text -->
+    <div id="noImageContainer" class="no-image-container">
+        <img id="noImage" src="./photo_2024-10-05_12-23-33.jpg" alt="Sad Image" style="width: 100px; border-radius: 10px;">
+        <p id="noImageText" class="no-image-text">Точно?)))</p>
+    </div>
+    
+    <div id="popup" class="popup">
+        Урааааааа! 💖
+    </div>
+
+    <script>
+        let yesButton = document.getElementById("yes");
+        let noImageContainer = document.getElementById("noImageContainer");
+        let noImageText = document.getElementById("noImageText");
+
+        function growYes() {
+            let currentSize = parseInt(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = (currentSize + 10) + "px";
+            yesButton.style.padding = (currentSize / 2 + 10) + "px";
+        }
+
+        function showPopup() {
+            document.getElementById("popup").style.display = "flex";
+        }
+
+        function showImageAndGrowYes() {
+            // Grow the Yes button
+            growYes();
+
+            // Show the sad image and the text "точно?)))"
+            noImageContainer.style.display = "block";
+            noImageText.style.display = "block";
+        }
+    </script>
+</body>
+</html>
